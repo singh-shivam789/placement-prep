@@ -60,7 +60,20 @@ int* stockSpan(int *price, int size)  {
 */
 
 /* O(n) */
-stack<int> s;
-for(int i=0; i<n; i++){
-
+#include<stack>
+int* stockSpan(int *price, int size)  {
+	int * arr = new int[size];
+	stack<pair<int, int>*> s;
+        for(int i=0, k=0; i<size; i++){
+		int count = 1;
+		if(s.empty()) arr[k] = count;
+		else if(s.top() -> first > price[i]) arr[k] = count;
+		else{
+		    while(!s.empty() && s.top() -> first < price[i]){
+			count += s.top() -> second;
+			s.pop();
+		    } arr[k] = count;
+		}
+		k++; s.push(new pair<int, int>(price[i], count));
+    } return arr;
 }
