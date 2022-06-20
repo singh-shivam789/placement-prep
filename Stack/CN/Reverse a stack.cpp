@@ -37,3 +37,24 @@ Sample Input 2:
 Sample Output 2:
 2 8 15 1 10
 */
+
+#include<stack>
+void helper(stack<int> &input, stack<int> &extra){
+    if(input.empty()){
+        return;
+    }
+    else{
+        int save = input.top();
+        input.pop();
+        helper(input, extra);
+        extra.push(save);
+    }
+}
+
+void reverseStack(stack<int> &input, stack<int> &extra) {
+    helper(input, extra);
+    while(!extra.empty()){
+        input.push(extra.top());
+        extra.pop();
+    }
+}
