@@ -1,28 +1,52 @@
-**Problem** : 
-Given an array consisting of positive and negative integers, find the length of the longest subarray whose sum is zero.
+# **Problem** : 
+# Given an array consisting of positive and negative integers, find the length of the longest subarray whose sum is zero.
 
-**Input Format**:
-The first line of input contains an integer, that denotes the value of the size of the array. Let us denote it with the symbol N.
-The following line contains N space separated integers, that denote the value of the elements of the array.
+## **Input Format**:
+> The first line of input contains an integer, that denotes the value of the size of the array. Let us denote it with the symbol N.
+>
+> The following line contains N space separated integers, that denote the value of the elements of the array.
 
-**Output Format**
-The first and only line of output contains length of the longest subarray whose sum is zero.
+## **Output Format**
+> The first and only line of output contains length of the longest subarray whose sum is zero.
 
-**Constraints**:
-0 <= N <= 10^8
-Time Limit: 1 sec
+## **Constraints**:
+> 0 <= N <= 10^8
+> Time Limit: 1 sec
 
-Sample Input 1:
-10 
-95 -97 -387 -435 -5 -70 897 127 23 284
+## Sample Input 1:
+> 10
+>  
+> 95 -97 -387 -435 -5 -70 897 127 23 284
 
-Sample Output 1:
-5
-Explanation:
-The five elements that form the longest subarray that sum up to zero are: -387, -435, -5, -70, 897 
+## Sample Output 1:
+> 5
+> Explanation: The five elements that form the longest subarray that sum up to zero are: -387, -435, -5, -70, 897 
 
 
-**TRICK** 
+# Brute Force
+
+## Brute force is simple: 
+## Find the subarrays with the sum 0 and calculate the length (end - start + 1) and update the maximum length 
+
+```
+#include<unordered_map>
+int lengthOfLongestSubsetWithZeroSum(int* arr, int n) {
+	int maxLength = 0;
+    for(int i=0; i<n; i++){
+        int s = 0;
+        for(int j=i; j<n; j++){
+            s += arr[j];
+            if(s == 0){
+                maxLength = max(j-i+1, maxLength);
+            }
+        }
+    }
+    return maxLength;
+}
+
+```
+
+# **TRICK** 
 
 
 ![image](https://user-images.githubusercontent.com/52860981/181027065-359ae2db-cf76-4ae2-9d24-4e82d76915d0.png)
