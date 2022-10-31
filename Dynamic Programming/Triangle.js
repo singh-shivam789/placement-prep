@@ -45,8 +45,8 @@ var minimumTotal = function(arr) {
 // Bottom Up
 // Time Complexity - O(n^2) 
 // Space Complexity - O(n)
-const iter = function(n, arr){
-    var dp = [], r = n;
+var minimumTotal = function(arr) {
+    var dp = [], n = arr.length-1, r = n;
     for(let i=0; i<arr.length; i++){
         dp.push(arr[n][i]);
     }
@@ -56,12 +56,4 @@ const iter = function(n, arr){
         } r--;
     } 
     return dp[0];
-}
-
-var minimumTotal = function(arr) {
-    var dp = [];
-    for(let i=0; i<arr.length; i++){
-        dp.push(new Array(i+1).fill(-1));
-    }
-    return iter(arr.length-1, arr);
 };
